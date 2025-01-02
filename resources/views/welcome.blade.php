@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel 11 with Vue</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body>
+<div id="app"></div>
+</body>
+</html>
+
+
+{{--
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -174,3 +189,4 @@
         </div>
     </body>
 </html>
+--}}

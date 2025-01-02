@@ -6,7 +6,7 @@ services:
       - ./:/var/www/
       - ./_docker/nginx/conf.d/:/etc/nginx/conf.d/
     ports:
-      - "80:80"
+      - 80:80
     depends_on:
       - app
 
@@ -22,6 +22,8 @@ services:
       - ./:/var/www/
     depends_on:
       - db
+    ports:
+      - 5173:5173
 
   db:
     image: mysql:8.0
