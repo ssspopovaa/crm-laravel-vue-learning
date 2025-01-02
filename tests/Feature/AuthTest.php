@@ -21,13 +21,13 @@ class AuthTest extends TestCase
         $this->user = User::factory()->create(['password' => bcrypt($this->password)]);
     }
 
-    protected function attemptToLogin($pasword)
+    protected function attemptToLogin($password)
     {
         return $this->post(
             'login',
             [
                 'email' => $this->user->email,
-                'password' => $pasword,
+                'password' => $password,
             ]
         );
     }
@@ -46,12 +46,16 @@ class AuthTest extends TestCase
      */
     public function testAuth(): void
     {
-
         $response = $this->attemptToLogin($this->password);
         $response->assertStatus(200);
 
         $response = $this->get('roles');
-        $response->assertStatus(200);
+
+        if ($this->user->role->name == 'Admin') {
+            $response->assertStatus(200);
+        } else {
+            $response->assertStatus(403);
+        }
 
         $response = $this->get('logout');
         $response->assertStatus(200);

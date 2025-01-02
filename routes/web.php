@@ -11,7 +11,9 @@ Route::get('/', function () {
 
 
 Route::middleware([Authenticate::class])->group(function () {
-    Route::get('roles', [RolesController::class, 'list']);
+    Route::middleware(['roles:admin'])->group(function () {
+        Route::get('roles', [RolesController::class, 'list']);
+    });
 });
 
 //Route::get('/', [RolesController::class, 'index']);
