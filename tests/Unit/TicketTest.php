@@ -12,15 +12,7 @@ class TicketTest extends TestCase
 //    use RefreshDatabase;
     use DatabaseTransactions;
 
-    /**
-     * A basic unit test example.
-     */
-    public function test_example(): void
-    {
-        $this->assertTrue(true);
-    }
-
-    public function test_is_new(): void
+    public function testIsNew(): void
     {
 //        $this->seed();
         $ticket = Ticket::factory()->create([
@@ -30,7 +22,7 @@ class TicketTest extends TestCase
         $this->assertTrue($ticket->isNew());
     }
 
-    public function test_is_not_new(): void
+    public function testIsNotNew(): void
     {
 //        $this->seed();
         $ticket = Ticket::factory()->create([
