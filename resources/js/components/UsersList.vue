@@ -3,15 +3,14 @@
     const getClass = (role) => {
         return 'top-' + role
     }
-
-    const buildUserUrl = (name) => {
-        return `/users/${name}`;
+    const buildUserUrl = (id) => {
+        return `/users/${id}`;
     }
 </script>
 
 <template>
     <div>
-        <h2 :class="getClass(user.role)"><router-link :to="buildUserUrl(user.name)">{{ user.name }} {{ user.lastName }}</router-link></h2>
+        <h2 :class="getClass(user.role)"><router-link :to="buildUserUrl(user.id)">{{ user.name }}</router-link></h2>
         <small>{{ user.role }}</small>
     </div>
 </template>

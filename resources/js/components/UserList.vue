@@ -1,37 +1,16 @@
 <script setup>
-import {ref} from "vue";
+import {ref, onMounted} from "vue";
 import UsersList from "./UsersList.vue";
 
 const title = ref("CRM Helpdesc");
-const users = ref([
-    {
-        name: 'Iztok',
-        lastName: 'Stopar',
-        role: "admin"
-    },
-    {
-        name: 'Alex',
-        lastName: 'Panker',
-        role: "manager"
-    },
-    {
-        name: 'Piltou',
-        lastName: 'Carney',
-        role: "client"
-    },
-    {
-        name: 'Corney',
-        lastName: 'Buncher',
-        role: "manager"
-    },
-]);
-
+const users = ref([]);
 const name = ref('');
 
-const addUser = () => {
-    users.value.push(name.value)
-    name.value = ''
-}
+onMounted(() => {
+    axios.get('/users').then(result => {
+        users.value = result.data
+    })
+})
 
 </script>
 
@@ -39,7 +18,6 @@ const addUser = () => {
     <div id="parent">
         <h1>{{ title }}</h1>
         <users-list v-for="(user, index) in users" :user="user" :key="index"/>
-        <input type="text" v-model="name"><button @click="addUser" type="button">Add</button>
     </div>
 </template>
 

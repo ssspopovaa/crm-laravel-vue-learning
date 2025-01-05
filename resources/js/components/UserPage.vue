@@ -2,18 +2,23 @@
 import { ref, onMounted } from 'vue';
 import {useRoute} from "vue-router";
 
-const name = ref('');
+const userId = ref('');
+const user = ref({});
 const route = useRoute();
 
-onMounted(() => {
-    name.value = route.params.name;
+onMounted(async () => {
+    userId.value = route.params.id;
+    await axios.get(`/users/${userId.value}`).then(function(response) {
+        user.value = response.data
+    })
 })
 
 </script>
 
 <template>
     <div>
-        User name: {{ name }}
+        <b>User id:</b> {{ user.name }} <br>
+        <b>User email:</b> {{ user.email }}
     </div>
 </template>
 
